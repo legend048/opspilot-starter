@@ -1,0 +1,9 @@
+{
+  "source": "gmail",
+  "payload": {
+    "subject": "Invoice INV-2025-10 ACME Pvt Ltd",
+    "from": "billing@acme.com",
+    "body": "Please find attached invoice for September. Total: \u20b942,500 due 7 days.",
+    "thread_id": "t_12345"
+  }
+}

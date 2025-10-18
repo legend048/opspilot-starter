@@ -1,0 +1,9 @@
+{
+  "source": "gmail",
+  "payload": {
+    "subject": "Service complaint: delays in shipment",
+    "from": "customer@example.com",
+    "body": "I'm unhappy with the repeated delays and poor experience. Please escalate.",
+    "thread_id": "t_67890"
+  }
+}

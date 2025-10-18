@@ -1,0 +1,10 @@
+{
+  "source": "sheets",
+  "payload": {
+    "sheet": "Ops KPIs",
+    "metric": "SLA_BREACH_COUNT",
+    "value": 12,
+    "threshold": 5,
+    "note": "Breached in the last hour"
+  }
+}

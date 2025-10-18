@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>OpsPilot Starter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 24px; background: #0f172a; color: #e5e7eb; }
+    a { color: #93c5fd; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .card { background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; }
+    .badge { padding: 2px 8px; border-radius: 999px; font-size: 12px; border: 1px solid #374151; }
+    .ok { background:#065f46; }
+    .err { background:#7f1d1d; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border-bottom: 1px solid #1f2937; text-align: left; }
+    .btn { display:inline-block; padding:8px 12px; border-radius:8px; border:1px solid #374151; background:#1f2937; color:#e5e7eb; text-decoration:none; }
+    .btn:hover { background:#111827; }
+    .grid { display:grid; gap:12px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size:12px; }
+  </style>
+</head>
+<body>
+  <h1>OpsPilot Starter</h1>
+  <p>Ingest events with <code class="mono">POST /ingest</code> then manage runs here. New to this? Open a terminal and run <code class="mono">bash scripts/run_demo.sh</code>.</p>
+  <div class="row">
+    <div class="card">
+      <h2>Events</h2>
+      <table>
+        <thead><tr><th>Time</th><th>Source</th><th>Subject/Metric</th></tr></thead>
+        <tbody>
+        {% for ev in events %}
+          <tr>
+            <td class="mono">{{ ev.received_at }}</td>
+            <td>{{ ev.source }}</td>
+            <td class="mono">
+              {% if ev.source == "gmail" %}
+                {{ ev.payload.subject }}
+              {% elif ev.source == "sheets" %}
+                {{ ev.payload.metric }} = {{ ev.payload.value }} (th {{ ev.payload.threshold }})
+              {% else %}
+                {{ ev.payload }}
+              {% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Runs</h2>
+      <div class="grid">
+        {% for run in runs %}
+          <div style="border:1px solid #1f2937; border-radius:8px; padding:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <div class="mono">{{ run.id }}</div>
+              <div>
+                <span class="badge">{{ run.classification.type }}</span>
+                <span class="badge">{{ run.classification.priority }}</span>
+                <span class="badge">{{ run.status }}</span>
+              </div>
+            </div>
+            <div class="mono">event: {{ run.event_id }}</div>
+            {% if run.status == "waiting_approval" %}
+              <div style="margin-top:8px;">
+                <a class="btn" href="/approve/{{ run.id }}?decision=approve">Approve</a>
+                <a class="btn" href="/approve/{{ run.id }}?decision=reject">Reject</a>
+              </div>
+            {% endif %}
+            {% if run.tool_calls|length > 0 %}
+            <details style="margin-top:8px;"><summary>Tool calls ({{ run.tool_calls|length }})</summary>
+              <table style="margin-top:6px;">
+                <thead><tr><th>Name</th><th>Status</th><th>Latency</th><th>Params</th></tr></thead>
+                <tbody>
+                  {% for tc in run.tool_calls %}
+                    <tr>
+                      <td>{{ tc.name }}</td>
+                      <td>{% if tc.status == "ok" %}<span class="badge ok">ok</span>{% else %}<span class="badge err">error</span>{% endif %}</td>
+                      <td class="mono">{{ tc.latency_ms }} ms</td>
+                      <td class="mono">{{ tc.params_summary }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </details>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

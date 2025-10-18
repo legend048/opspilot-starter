@@ -1,0 +1,88 @@
+# ---- Python (compiled, build artifacts, venvs)
+__pycache__/
+*.py[cod]
+*$py.class
+.buildozer/
+build/
+dist/
+.eggs/
+*.egg-info/
+.installed.cfg
+*.egg
+wheels/
+share/python-wheels/
+.pybuilder/
+target/
+.coverage
+.coverage.*
+htmlcov/
+.coverage.*
+.cache/
+.tox/
+.nox/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+.pyre/
+.ruff_cache/
+cython_debug/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.pdm-python
+.pixi
+__pypackages__/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Django/Flask (just in case)
+local_settings.py
+instance/
+.webassets-cache
+
+# ---- Project: OpsPilot Starter data & logs
+# Keep the folder, ignore generated data
+app/data/*
+!app/data/.gitkeep
+
+# Common generated files in data
+*.log
+*.csv
+state.json
+
+# ---- Environment & secrets
+# (Commit a sanitized `.env.example` instead)
+.env
+.env.*
+.envrc
+.pypirc
+
+# ---- Editors / OS (use a *global* gitignore ideally)
+# Uncomment to ignore locally, or keep these in your global ignore
+# .idea/
+# .vscode/
+
+# macOS / Windows cruft
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# ---- Node (only if you add frontend later)
+# node_modules/
+# *.tsbuildinfo
+
+# ---- Docker / tooling
+# Docker local overrides
+docker-compose.override.yml
